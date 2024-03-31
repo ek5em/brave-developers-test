@@ -2,7 +2,6 @@
 import { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
 import { NextPage } from "next";
 import { AddOperatorMessage, WarningMessage } from "@/constants";
-import { OperatorsContext } from "../layout";
 import {
     Modal,
     Warning,
@@ -12,13 +11,13 @@ import {
     EButton,
     InputWrapper,
 } from "@/components";
+import { Operators } from "@/constants";
 
 const NewOperator: NextPage = () => {
     const [newOperator, setNewOperator] = useState<string>("");
     const [operatorWarning, setOperatorWarning] = useState<string>("");
     const [isOperatorAdded, setIsOperatorAdded] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const operators = useContext(OperatorsContext);
 
     const clearWarning = () => {
         setOperatorWarning("");
@@ -31,7 +30,7 @@ const NewOperator: NextPage = () => {
             return false;
         }
         if (
-            operators.find(
+            Operators.find(
                 (el) => el.name.toLowerCase() === newOperator.toLowerCase()
             )
         ) {
@@ -45,8 +44,8 @@ const NewOperator: NextPage = () => {
     const sumbitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (checkValid()) {
-            operators.push({
-                id: operators.length,
+            Operators.push({
+                id: Operators.length,
                 name: newOperator,
             });
             setIsOperatorAdded(true);
