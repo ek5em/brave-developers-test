@@ -21,7 +21,8 @@ import Head from "next/head";
 import { payAmount } from "@/API/PayAmount";
 import { StyledPayment } from "./StyledPayment";
 
-export enum EPaymentWarning {
+
+enum EPaymentWarning {
     amount = "amount",
     phone = "phone",
 }
